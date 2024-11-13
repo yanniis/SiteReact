@@ -4,17 +4,18 @@ import { Checkbox } from './components/forms/checkbox'
 import './App.css'
 import { ProductCategoryRow } from './components/table/productCategoryRow'
 import { ProductRow } from './components/table/productRow'
+import { RadioButton } from './components/table/radioButton'
 
 
 const autosData = [
-  {id: 1, marque: 'Bmw', puissance: "560ch", pays: "Allemagne"},
-  {id: 2,marque: 'Bmw', puissance: "90ch", pays: "Allemagne"},
-  {id: 3,marque: 'Bmw', puissance: "450ch", pays: "Allemagne"},
-  {id: 4,marque: 'Audi', puissance: "260ch", pays: "Allemagne"},
-  {id: 5,marque: 'Audi', puissance: "960ch", pays: "Allemagne"},
-  {id: 6,marque: 'Audi', puissance: "60ch", pays: "Allemagne"},
-  {id: 7,marque: 'Renault', puissance: "160ch", pays: "France"},
-  {id: 8,marque: 'Seat', puissance: "999ch", pays: "Espagne"},
+  {id: 1, marque: 'Bmw', puissance: 560, pays: "Allemagne"},
+  {id: 2,marque: 'Bmw', puissance: 90, pays: "Allemagne"},
+  {id: 3,marque: 'Bmw', puissance: 450, pays: "Allemagne"},
+  {id: 4,marque: 'Audi', puissance: 260, pays: "Allemagne"},
+  {id: 5,marque: 'Audi', puissance: 960, pays: "Allemagne"},
+  {id: 6,marque: 'Audi', puissance: 60, pays: "Allemagne"},
+  {id: 7,marque: 'Renault', puissance: 160, pays: "France"},
+  {id: 8,marque: 'Seat', puissance: 999, pays: "Espagne"},
 ]
 
 
@@ -27,8 +28,49 @@ function App() {
   const id = useId()
   const idCheckbox = useId()
 
-  return <>
-  {/* Condition pour modifier bonjour au cas ou value n'est plus vide */}
+// Variables des boutons radios
+const idRadio1 = useId()
+const idRadio2 = useId()
+const idRadio3 = useId()
+const [valueRadio, setValueRadio] = useState('test')
+
+// Fonction pour gérer les changements de sélection
+const handleChange = (event) => {
+  setValueRadio(event.target.value)
+  console.log(valueRadio)
+}
+
+  return <>    
+
+<button onClick={handleChange}>Filtrer</button>
+
+    <RadioButton 
+    idRadio={idRadio1}
+    valueRadio="499"
+    labelRadio="- de 500"
+    checked={valueRadio === "499"}
+    onChange={handleChange}
+  />
+
+  <RadioButton 
+    idRadio={idRadio2}
+    valueRadio="500"
+    labelRadio="+ de 500"
+    checked={valueRadio === "500"}
+    onChange={handleChange}
+  />
+
+<RadioButton 
+    idRadio={idRadio3}
+    valueRadio=""
+    labelRadio="All"
+    checked={valueRadio == ""}
+    onChange={handleChange}
+  />
+
+  <AutoTable autos={autosData}/>
+
+
   <h1>{value === '' ? 'Bonjour' : value}</h1>
 
   <form>
@@ -50,8 +92,6 @@ function App() {
 </form>
 
 <h2>{checked == true ? 'Checkbox coché' : ''}</h2>
-
-<AutoTable autos={autosData}/>
 
   </>
 
@@ -77,7 +117,7 @@ function AutoTable ({autos}) {
     <thead>
       <tr>
         <th>Marque</th>
-        <th>puissance</th>
+        <th>Puissance</th>
       </tr>
     </thead>
     <tbody>
