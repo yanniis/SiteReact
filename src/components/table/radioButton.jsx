@@ -9,7 +9,7 @@ export function RadioButton ({ valueRadio, labelRadio, idRadio, checked, onChang
           checked={checked}
           onChange={onChange}
         />
-        <label htmlFor={idRadio}>{labelRadio}</label>
+        <label htmlFor={idRadio}> {labelRadio} </label>
       </div>
     )
   }
