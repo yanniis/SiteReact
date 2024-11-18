@@ -5,7 +5,7 @@ export function Checkbox ({idCheckbox, checked, onChange, label}) {
         type="checkbox"
         id={idCheckbox}
         checked={checked}
-        onChange={(e) => onChange(e.target.checked)} 
+        onChange={(e) => onChange(e.target.checked)}
         />
 
         <label htmlFor={idCheckbox}>{label}</label>
